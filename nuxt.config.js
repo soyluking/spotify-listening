@@ -40,10 +40,15 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
   ],
+
+  /*
+   ** Import env variables
+   */
   env: {
     spotifyId: process.env.SPOTIFY_CLIENT_ID,
     clientUrl: process.env.CLIENT_URL,
   },
+
   /*
    ** Axios module configuration
    */
@@ -55,6 +60,8 @@ export default {
    ** Build configuration
    */
   build: {
+    watch: ['api'],
+
     /*
      ** You can extend webpack config here
      */
@@ -68,6 +75,13 @@ export default {
           exclude: /(node_modules)/
         })
       }
-    }
-  }
+    },
+
+    serverMiddleware: ['~/api'],
+  },
+
+  /*
+   ** Server Middleware
+   */
+  serverMiddleware: ['~/api'],
 }
